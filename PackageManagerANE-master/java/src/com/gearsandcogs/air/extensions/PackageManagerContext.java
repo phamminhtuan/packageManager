@@ -22,6 +22,7 @@ public class PackageManagerContext extends FREContext
         functionMap.put("UninstallApp", new UninstallApp());
         functionMap.put("ForceStopApp", new ForceStopApp());
         functionMap.put("ClearDataAndCacheApp", new ClearDataAndCacheApp());
+        functionMap.put("KillApp", new KillApp());
         return functionMap;
     }
 

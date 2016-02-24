@@ -169,4 +169,39 @@ public class SystemCalls
             return false;
         }  
    }
+    
+    public static Boolean killProcessApplication(FREContext freContext, String app_id) {
+    	Context appContext = freContext.getActivity().getApplicationContext();
+    	ActivityManager am = (ActivityManager) appContext.getSystemService(Context.ACTIVITY_SERVICE);
+    	List<ActivityManager.RunningAppProcessInfo> pids = am.getRunningAppProcesses();
+    	int processid = 0;
+    	for (int i = 0; i < pids.size(); i++) {
+    	    ActivityManager.RunningAppProcessInfo info = pids.get(i);
+    	    if (info.processName.equalsIgnoreCase(app_id)) 
+    	    {
+    	       processid = info.pid;
+    	       break;
+    	    } 
+    	}
+    	
+    	 try {  
+             Process process = Runtime.getRuntime().exec("su");  
+             OutputStream out = process.getOutputStream();  
+             String cmd = "kill " + processid + " \n";  
+             try {  
+                 out.write(cmd.getBytes());  
+                 out.flush();
+             } catch (IOException e) {  
+                 e.printStackTrace(); 
+                 return false;
+             }  
+   
+             process.getOutputStream().close();  
+             process = null;  
+             return true;
+         } catch (Exception e) {  
+             e.printStackTrace(); 
+             return false;
+         }
+    }
 }
