@@ -53,9 +53,16 @@ package com.gearsandcogs.air.extensions
 			trace("Clear data and cache hit");
 			extContext.call("ClearDataAndCacheApp", app_id);
 		}
+		
 		public function killApp(app_id:String):void {
 			trace("killApp hit");
 			extContext.call("KillApp", app_id);
+		}
+		
+		public function getProcessPackages(app_id:String):String {
+			trace("killApp hit");
+			var strPackage:String = extContext.call("GetProcessPackages", app_id) as String;
+			return strPackage;
 		}
 		
         public function uninstallApp(app_id:String):void {

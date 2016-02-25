@@ -23,6 +23,7 @@ public class PackageManagerContext extends FREContext
         functionMap.put("ForceStopApp", new ForceStopApp());
         functionMap.put("ClearDataAndCacheApp", new ClearDataAndCacheApp());
         functionMap.put("KillApp", new KillApp());
+        functionMap.put("GetProcessPackages", new GetProcessPackages());
         return functionMap;
     }
 

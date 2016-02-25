@@ -204,4 +204,17 @@ public class SystemCalls
              return false;
          }
     }
+    
+    public static String getProcessPackages(FREContext freContext, String app_id) {
+    	Context appContext = freContext.getActivity().getApplicationContext();
+    	ActivityManager am = (ActivityManager) appContext.getSystemService(Context.ACTIVITY_SERVICE);
+    	List<ActivityManager.RunningAppProcessInfo> pids = am.getRunningAppProcesses();
+    	String processPackage = "";
+    	for (int i = 0; i < pids.size(); i++) {
+    	    ActivityManager.RunningAppProcessInfo info = pids.get(i);
+    	    processPackage+=info.processName;
+    	    processPackage+="|";
+    	}
+    	return processPackage;
+    }
 }
